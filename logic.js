@@ -30,10 +30,9 @@ var todoFunctions = {
         // hint: array.concat
     },
     deleteTodo: function(todos, idToDelete) {
-        var newTodo = todos.filter(function(todo) {
+        return todos.filter(function(todo) {
             return todo.id !== idToDelete
         })
-        return newTodo
     },
     markTodo: function(todos, idToMark) {
         // should leave the input argument todos unchanged (you can use cloneArrayOfObjects)
