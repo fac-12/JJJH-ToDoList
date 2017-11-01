@@ -46,14 +46,6 @@ var todoFunctions = {
       return newArr;
 
     },
-
-
-
-        // should leave the input argument todos unchanged (you can use cloneArrayOfObjects)
-        // in the new todo array, all elements will remain unchanged except the one with id: idToMark
-        // this element will have its done value toggled
-        // hint: array.map
-
     sortTodos: function(todos, sortFunction) {
         // stretch goal! Do this last
         // should leave the input arguement todos unchanged (you can use cloneArrayOfObjects)
