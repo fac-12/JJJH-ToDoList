@@ -40,11 +40,7 @@ var todoFunctions = {
     var newArr = todoFunctions.cloneArrayOfObjects(todos);
     for(var i = 0; i < newArr.length; i++){
       if (newArr[i].id === idToMark){
-        if (newArr[i].done === false){
-           newArr[i].done = true;
-         } else {
-           newArr[i].done = false;
-        }
+        newArr[i].done = !newArr[i].done;
       }
     }
       return newArr;
