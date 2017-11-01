@@ -20,8 +20,6 @@ test('Testing DeleteTodo function', function(t) {
 test('Testing markTodo function', function(t) {
     t.equal(typeof logic.markTodo(toDoExample, 0), "object", "Should return an object");
     t.equal(findTodo(logic.markTodo(toDoExample, 0), 0)[0].done, false, "Should toggle the done value of idToMark");
-
-
     t.end();
 });
 
