@@ -7,20 +7,31 @@
   var addTodoForm = document.getElementById('add-todo');
 
   var state = [
-    { id: -3, description: 'first todo' },
-    { id: -2, description: 'second todo' },
-    { id: -1, description: 'third todo' },
+    { id: -3, description: 'first todo', done: false },
+    { id: -2, description: 'second todo', done: false },
+    { id: -1, description: 'third todo', done: false }
   ]; // this is our initial todoList
 
   // This function takes a todo, it returns the DOM node representing that todo
   var createTodoNode = function(todo) {
     var todoNode = document.createElement('li');
+
     // you will need to use addEventListener
+
+    // TO FINISH!!!
 
     // add span holding description
 
+    var span = document.createElement('span');
+    var todoText = document.createTextNode(todo.description);
+    span.appendChild(todoText);
+    todoNode.appendChild(span);
+
     // this adds the delete button
     var deleteButtonNode = document.createElement('button');
+    var buttonText = document.createTextNode('Delete');
+    deleteButtonNode.appendChild(buttonText);
+
     deleteButtonNode.addEventListener('click', function(event) {
       var newState = todoFunctions.deleteTodo(state, todo.id);
       update(newState);
@@ -29,7 +40,14 @@
 
     // add markTodo button
 
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = todo.done;
+    todoNode.appendChild(checkbox);
+
     // add classes for css
+
+    // TO FINISH!!!
 
     return todoNode;
   };
@@ -40,6 +58,9 @@
       // https://developer.mozilla.org/en-US/docs/Web/Events/submit
       // what does event.preventDefault do?
       // what is inside event.target?
+
+      event.preventDefault();
+      console.log(event.target[0].value);
 
       var description = '?'; // event.target ....
 
