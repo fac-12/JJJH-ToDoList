@@ -26,6 +26,7 @@ var todoFunctions = {
     addTodo: function(todos, newTodo) {
         var newArr = todoFunctions.cloneArrayOfObjects(todos);
         newTodo.id = todoFunctions.generateId();
+        newTodo.done = false;
         return newArr.concat(newTodo);
     },
 
@@ -36,11 +37,27 @@ var todoFunctions = {
     },
 
     markTodo: function(todos, idToMark) {
+    var newArr = todoFunctions.cloneArrayOfObjects(todos);
+    for(var i = 0; i < newArr.length; i++){
+      if (newArr[i].id === idToMark){
+        if (newArr[i].done === false){
+           newArr[i].done = true;
+         } else {
+           newArr[i].done = false;
+        }
+      }
+    }
+      return newArr;
+
+    },
+
+
+
         // should leave the input argument todos unchanged (you can use cloneArrayOfObjects)
         // in the new todo array, all elements will remain unchanged except the one with id: idToMark
         // this element will have its done value toggled
         // hint: array.map
-    },
+
     sortTodos: function(todos, sortFunction) {
         // stretch goal! Do this last
         // should leave the input arguement todos unchanged (you can use cloneArrayOfObjects)
