@@ -25,7 +25,7 @@
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = todo.done;
-    // checkbox.className = "todo-listitem-checkbox";
+    checkbox.className = "todo-listitem-checkbox";
     checkbox.addEventListener('click', function(event) {
       event.preventDefault();
       var newState = todoFunctions.markTodo(state, todo.id);
@@ -38,13 +38,19 @@
 
     var span = document.createElement('span');
     var todoText = document.createTextNode(todo.description);
+    span.className = "todo-listitem-text";
     span.appendChild(todoText);
     todoNode.appendChild(span);
 
     // this adds the edit button
     var editButtonNode = document.createElement('button');
-    var editButtonText = document.createTextNode('Edit');
-    editButtonNode.appendChild(editButtonText);
+    var editButtonImage = document.createElement('img');
+    editButtonImage.src = "images/pencil.svg";
+    editButtonImage.className = "todo-listitem-editIcon";
+
+    editButtonNode.appendChild(editButtonImage);
+    editButtonNode.className = "todo-listitem-editButton";
+
     span.setAttribute("contenteditable", todo.editable);
     editButtonNode.addEventListener('click', function(event) {
         todo.description = span.innerText;

@@ -5,7 +5,6 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-_
 }
 
 .todo-outerContainer {
@@ -13,35 +12,52 @@ _
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
 }
 
 .todo-innerContainer {
+  width: 400px;
   margin-bottom: 50px;
+  box-shadow: 0px 1px 1px 0px rgba(100,100,100,0.75);
 }
 
-.heading {
+.todo-heading {
   font-weight: normal;
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  color: white;
+  padding: 50px 40px;
+  background: #e74c3c;
 }
 
 .todo-form {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(100,100,100,0.15);
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .todo-form-input {
-  padding: 20px;
+  padding-left: 40px;
   border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.todo-form-input-text {
+  width: 60%;
 }
 
 .todo-form-input-button {
-
+  padding: 20px;
+  margin-right: 20px;
   background: url('images/add.svg');
-  background-size: 18px;
+  background-size: 25px;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.todo-form-input-button:hover {
+  opacity: 0.5;
 }
 
 .todo-form-input::-webkit-input-placeholder {
@@ -54,34 +70,35 @@ _
 .todo-listitem {
   list-style-type: none;
   padding: 20px;
-  border-bottom: 1px solid black;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 
-.todo-listitem-deleteIcon {
+.todo-listitem-text {
+  margin-right: auto;
+  width: 65%;
+  overflow-wrap: break-word;
+}
+
+
+.todo-listitem-deleteIcon, .todo-listitem-editIcon {
   width: 18px;
 
 }
 
-.todo-listitem-deleteIcon:hover {
+.todo-listitem-deleteIcon:hover, .todo-listitem-editIcon:hover {
   opacity: 0.5;
 }
 
-.todo-listitem-deleteButton {
+.todo-listitem-deleteButton, .todo-listitem-editButton {
   background: none;
   border: none;
+  margin-right: 10px;
 }
 
 .todo-listitem-checkbox {
-  width: 40px;
-	height: 40px;
-	background: #ddd;
-	margin: 20px 90px;
-
-	border-radius: 100%;
-	position: relative;
-	box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
+  margin-right: 10px;
 }
 
 .edit {

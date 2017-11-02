@@ -10,25 +10,28 @@
 
 <body>
 
-  <h1 class="heading">Get Things Done!</h1>
+
 
   <section class="todo-outerContainer">
+
     <div class="todo-innerContainer">
+      <h1 class="todo-heading">Get Things Done!</h1>
       <form class="todo-form" id="add-todo">
-        <input class="todo-form-input" placeholder="Add new todo..." type="text" name="description" value="">
+        <input class="todo-form-input todo-form-input-text" placeholder="Add new todo..." type="text" name="description" value="">
         <input class="todo-form-input todo-form-input-button" type="submit" name="" value="">
       </form>
       <div id="todo-container" class="todo-list">
 
       </div>
+
+      <select id="sort-todo">
+        <option value="date">By date</option>
+        <option value="completed">By completed</option>
+      </select>
+
     </div>
-    <select id="sort-todo">
-      <option value="date">By date</option>
-      <option value="completed">By completed</option>
-    </select>
-    <div class="todo-listitem-checkbox">
-      <input type="checkbox">
-    </div>
+
+
   </section>
 </body>
 <script type="text/javascript" src="./logic.js"></script>
