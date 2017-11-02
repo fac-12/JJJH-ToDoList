@@ -71,8 +71,6 @@ _
 .todo-listitem-deleteButton {
   background: none;
   border: none;
-  align-self: flex-end;
-
 }
 
 .todo-listitem-checkbox {

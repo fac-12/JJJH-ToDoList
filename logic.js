@@ -26,6 +26,7 @@ var todoFunctions = {
         var newArr = todoFunctions.cloneArrayOfObjects(todos);
         newTodo.id = todoFunctions.generateId();
         newTodo.done = false;
+        newTodo.editable = false;
         return newArr.concat(newTodo);
     },
     deleteTodo: function(todos, idToDelete) {
@@ -41,7 +42,15 @@ var todoFunctions = {
             }
         }
         return newArr;
-
+    },
+    makeEditableTodo: function(todos, idToEdit) {
+        var newArr = todoFunctions.cloneArrayOfObjects(todos);
+        for (var i = 0; i < newArr.length; i++) {
+            if (newArr[i].id === idToEdit) {
+                newArr[i].editable = !newArr[i].editable;
+            }
+        }
+        return newArr;
     },
     sortTodosBool: function(todos) {
         var newArr = todoFunctions.cloneArrayOfObjects(todos);

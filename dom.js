@@ -2,15 +2,16 @@
 // The function here is called an iife,
 // it keeps everything inside hidden from the rest of our application
 (function() {
+
   // This is the dom node where we will keep our todo
   var container = document.getElementById('todo-container');
   var addTodoForm = document.getElementById('add-todo');
   var sortTodos = document.getElementById('sort-todo')
 
   var state = [
-    { id: -3, description: 'first todo', done: false },
-    { id: -2, description: 'second todo', done: false },
-    { id: -1, description: 'third todo', done: false }
+      { id: -3, description: 'first todo', done: false, editable: false },
+      { id: -2, description: 'second todo', done: false, editable: false },
+      { id: -1, description: 'third todo', done: false, editable: false }
   ]; // this is our initial todoList
 
   // This function takes a todo, it returns the DOM node representing that todo
@@ -40,6 +41,20 @@
     span.appendChild(todoText);
     todoNode.appendChild(span);
 
+    // this adds the edit button
+    var editButtonNode = document.createElement('button');
+    var editButtonText = document.createTextNode('Edit');
+    editButtonNode.appendChild(editButtonText);
+    span.setAttribute("contenteditable", todo.editable);
+    if (span.contentEditable === "true") {
+        editButtonNode.innerText = "Done"
+    }
+    editButtonNode.addEventListener('click', function(event) {
+        var newState = todoFunctions.makeEditableTodo(state, todo.id);
+        update(newState);
+    });
+    todoNode.appendChild(editButtonNode);
+
     // this adds the delete button
     var deleteButtonNode = document.createElement('button');
     var buttonImage = document.createElement('img');
@@ -66,42 +81,50 @@
 
   // bind create todo form
   if (addTodoForm) {
-    addTodoForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      var textinput = event.target[0].value;
-      var newObj = {
-        description: textinput
-      }
-      var newState = todoFunctions.addTodo(state, newObj);
-      update(newState);
-    });
+      addTodoForm.addEventListener('submit', function(event) {
+
+          event.preventDefault();
+          var textinput = event.target[0].value;
+          if (textinput === "") {
+              alert("Please add a description for your to do")
+          } else {
+              var newObj = {
+                  description: textinput
+              }
+              var newState = todoFunctions.addTodo(state, newObj);
+              update(newState);
+          }
+      });
   }
 
+
+
+
   sortTodos.onchange = function(event) {
-    if (event.target.value === "date"){
-      var newState = todoFunctions.sortTodosID(state);
-    } else if (event.target.value === "completed") {
-      var newState = todoFunctions.sortTodosBool(state);
-    }
-    update(newState);
+      if (event.target.value === "date") {
+          var newState = todoFunctions.sortTodosID(state);
+      } else if (event.target.value === "completed") {
+          var newState = todoFunctions.sortTodosBool(state);
+      }
+      update(newState);
   }
 
   // you should not need to change this function
   var update = function(newState) {
-    state = newState;
-    renderState(state);
+      state = newState;
+      renderState(state);
   };
 
   // you do not need to change this function
   var renderState = function(state) {
-    var todoListNode = document.createElement('ul');
+      var todoListNode = document.createElement('ul');
 
-    state.forEach(function(todo) {
-      todoListNode.appendChild(createTodoNode(todo));
-    });
+      state.forEach(function(todo) {
+          todoListNode.appendChild(createTodoNode(todo));
+      });
 
-    // you may want to add a class for css
-    container.replaceChild(todoListNode, container.firstChild);
+      // you may want to add a class for css
+      container.replaceChild(todoListNode, container.firstChild);
   };
 
   if (container) renderState(state);
