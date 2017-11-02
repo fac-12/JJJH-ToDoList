@@ -9,9 +9,9 @@
   var sortTodos = document.getElementById('sort-todo')
 
   var state = [
-      { id: -3, description: 'Master TDD', done: false, editable: false },
-      { id: -2, description: 'Buy hummus', done: false, editable: false },
-      { id: -1, description: 'Fix No. 14 door', done: false, editable: false }
+      // { id: 0, description: 'Master TDD', done: false, editable: false },
+      // { id: 1, description: 'Buy hummus', done: false, editable: false },
+      // { id: 2, description: 'Fix No. 14 door', done: false, editable: false }
   ]; // this is our initial todoList
 
   // This function takes a todo, it returns the DOM node representing that todo
@@ -22,29 +22,39 @@
 
     var checkboxContainer = document.createElement('div');
     checkboxContainer.className = "todo-listitem-checkboxContainer";
+    checkboxContainer.setAttribute('tabindex',0);
+    checkboxContainer.setAttribute('aria-label','box to mark whether a to do has been completed');
     var tick = document.createTextNode('✓');
     checkboxContainer.appendChild(tick);
 
     checkboxContainer.addEventListener('click', function(event) {
+      todo.description = descriptionInput.value;
       var newState = todoFunctions.markTodo(state, todo.id);
       update(newState);
     })
 
     if(todo.done) {
-      checkboxContainer.className = 'todo-listitem-checkboxContainer checked';
+      checkboxContainer.classList.add('checked');
     }
     else checkboxContainer.className = 'todo-listitem-checkboxContainer';
 
     todoNode.appendChild(checkboxContainer);
 
-    // add span holding description
+    // add descriptionInput holding description
 
-    var span = document.createElement('span');
-    var todoText = document.createTextNode(todo.description);
-    span.className = "todo-listitem-text";
-    span.setAttribute('tabindex',0);
-    span.appendChild(todoText);
-    todoNode.appendChild(span);
+    var descriptionInput = document.createElement('input');
+    descriptionInput.value = todo.description;
+    descriptionInput.className = "todo-listitem-text";
+
+    if (todo.editable) {
+        descriptionInput.className = "todo-listitem-text edit";
+        descriptionInput.removeAttribute('disabled');
+    }
+    else descriptionInput.setAttribute('disabled','')
+
+
+
+    todoNode.appendChild(descriptionInput);
 
     // this adds the edit button
     var editButtonNode = document.createElement('button');
@@ -58,19 +68,22 @@
     editButtonNode.appendChild(editButtonImage);
     editButtonNode.className = "todo-listitem-editButton";
 
-    span.setAttribute("contenteditable", todo.editable);
+
     editButtonNode.addEventListener('click', function(event) {
-        todo.description = span.innerText;
+        todo.description = descriptionInput.value;
         var newState = todoFunctions.makeEditableTodo(state, todo.id);
         update(newState);
+
+        var input = document.getElementsByClassName('todo-listitem-text')[todo.id-1];
+        // Weird hack because 'todo' here is the old todo so editable state updates one step behind
+        if(!todo.editable) input.focus();
     });
-    if (span.contentEditable === "true") {
-        editButtonNode.innerText = "Done";
-        span.className = "todo-listitem-text edit";
-    }
+
+    if(todo.editable) editButtonNode.innerText = "Done";
+
     todoNode.appendChild(editButtonNode);
 
-    if (todo.done) span.className = 'strike todo-listitem-text';
+    if (todo.done) descriptionInput.classList.add('strike');
 
     // this adds the delete button
     var deleteButtonNode = document.createElement('button');
@@ -145,6 +158,7 @@
 
       // you may want to add a class for css
       container.replaceChild(todoListNode, container.firstChild);
+      console.log('State re-rendered');
   };
 
   if (container) renderState(state);
