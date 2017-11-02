@@ -56,7 +56,7 @@ _
   padding: 20px;
   border-bottom: 1px solid black;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .todo-listitem-deleteIcon {
@@ -71,6 +71,7 @@ _
 .todo-listitem-deleteButton {
   background: none;
   border: none;
+  align-self: flex-end;
 
 }
 
