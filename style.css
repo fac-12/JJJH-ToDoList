@@ -25,7 +25,7 @@ body {
   font-weight: normal;
   text-align: center;
   color: white;
-  padding: 30px 40px;
+  padding: 50px 40px;
   background: #e74c3c;
 }
 
@@ -41,6 +41,10 @@ body {
   border: none;
   outline: none;
   font-size: 1rem;
+}
+
+.todo-form-input-text {
+  width: 60%;
 }
 
 .todo-form-input-button {
