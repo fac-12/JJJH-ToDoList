@@ -50,6 +50,7 @@
         editButtonNode.innerText = "Done"
     }
     editButtonNode.addEventListener('click', function(event) {
+        todo.description = span.innerText;
         var newState = todoFunctions.makeEditableTodo(state, todo.id);
         update(newState);
     });
