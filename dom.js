@@ -8,9 +8,9 @@
     var sortTodos = document.getElementById('sort-todo')
 
     var state = [
-        { id: -3, description: 'first todo', done: false },
-        { id: -2, description: 'second todo', done: false },
-        { id: -1, description: 'third todo', done: false }
+        { id: -3, description: 'first todo', done: false, editable: false },
+        { id: -2, description: 'second todo', done: false, editable: false },
+        { id: -1, description: 'third todo', done: false, editable: false }
     ]; // this is our initial todoList
 
     // This function takes a todo, it returns the DOM node representing that todo
@@ -27,6 +27,20 @@
         var todoText = document.createTextNode(todo.description);
         span.appendChild(todoText);
         todoNode.appendChild(span);
+
+        // this adds the edit button
+        var editButtonNode = document.createElement('button');
+        var editButtonText = document.createTextNode('Edit');
+        editButtonNode.appendChild(editButtonText);
+        span.setAttribute("contenteditable", todo.editable);
+        if (span.contentEditable === "true") {
+            editButtonNode.innerText = "Done"
+        }
+        editButtonNode.addEventListener('click', function(event) {
+            var newState = todoFunctions.makeEditableTodo(state, todo.id);
+            update(newState);
+        });
+        todoNode.appendChild(editButtonNode);
 
         // this adds the delete button
         var deleteButtonNode = document.createElement('button');
