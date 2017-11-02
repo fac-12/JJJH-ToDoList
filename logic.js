@@ -22,41 +22,42 @@ var todoFunctions = {
             return JSON.parse(JSON.stringify(todo));
         });
     },
-
     addTodo: function(todos, newTodo) {
         var newArr = todoFunctions.cloneArrayOfObjects(todos);
         newTodo.id = todoFunctions.generateId();
         newTodo.done = false;
         return newArr.concat(newTodo);
     },
-
     deleteTodo: function(todos, idToDelete) {
         return todos.filter(function(todo) {
             return todo.id !== idToDelete
         })
     },
-
     markTodo: function(todos, idToMark) {
-    var newArr = todoFunctions.cloneArrayOfObjects(todos);
-    for(var i = 0; i < newArr.length; i++){
-      if (newArr[i].id === idToMark){
-        newArr[i].done = !newArr[i].done;
-      }
-    }
-      return newArr;
+        var newArr = todoFunctions.cloneArrayOfObjects(todos);
+        for (var i = 0; i < newArr.length; i++) {
+            if (newArr[i].id === idToMark) {
+                newArr[i].done = !newArr[i].done;
+            }
+        }
+        return newArr;
 
     },
-    sortTodos: function(todos, sortFunction) {
-        // stretch goal! Do this last
-        // should leave the input arguement todos unchanged (you can use cloneArrayOfObjects)
-        // sortFunction will have same signature as the sort function in array.sort
-        // hint: array.slice, array.sort
+    sortTodosBool: function(todos) {
+        var newArr = todoFunctions.cloneArrayOfObjects(todos);
+        newArr.sort(function(a, b) {
+            return a.done - b.done
+        })
+        return newArr
+    },
+    sortTodosID: function(todos) {
+        var newArr = todoFunctions.cloneArrayOfObjects(todos);
+        newArr.sort(function(a, b) {
+            return a.id - b.id
+        })
+        return newArr
     },
 };
-
-
-// Why is this if statement necessary?
-// The answer has something to do with needing to run code both in the browser and in Node.js
 // See this article for more details:
 // http://www.matteoagosti.com/blog/2013/02/24/writing-javascript-modules-for-both-browser-and-node/
 if (typeof module !== 'undefined') {
