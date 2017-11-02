@@ -50,7 +50,6 @@ var todoFunctions = {
         })
         return newArr
     },
-
     sortTodosID: function(todos) {
         var newArr = todoFunctions.cloneArrayOfObjects(todos);
         newArr.sort(function(a, b) {

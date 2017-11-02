@@ -87,7 +87,6 @@ var sortingExample = [{
         done: false,
     },
 ];
-
 var sortedBoolExample = [{
         id: 1,
         description: 'make coffee',
