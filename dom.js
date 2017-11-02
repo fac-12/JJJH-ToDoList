@@ -2,103 +2,108 @@
 // The function here is called an iife,
 // it keeps everything inside hidden from the rest of our application
 (function() {
-  // This is the dom node where we will keep our todo
-  var container = document.getElementById('todo-container');
-  var addTodoForm = document.getElementById('add-todo');
-  var sortTodos = document.getElementById('sort-todo')
+    // This is the dom node where we will keep our todo
+    var container = document.getElementById('todo-container');
+    var addTodoForm = document.getElementById('add-todo');
+    var sortTodos = document.getElementById('sort-todo')
 
-  var state = [
-    { id: -3, description: 'first todo', done: false },
-    { id: -2, description: 'second todo', done: false },
-    { id: -1, description: 'third todo', done: false }
-  ]; // this is our initial todoList
+    var state = [
+        { id: -3, description: 'first todo', done: false },
+        { id: -2, description: 'second todo', done: false },
+        { id: -1, description: 'third todo', done: false }
+    ]; // this is our initial todoList
 
-  // This function takes a todo, it returns the DOM node representing that todo
-  var createTodoNode = function(todo) {
-    var todoNode = document.createElement('li');
+    // This function takes a todo, it returns the DOM node representing that todo
+    var createTodoNode = function(todo) {
+        var todoNode = document.createElement('li');
 
-    // you will need to use addEventListener
+        // you will need to use addEventListener
 
-    // TO FINISH!!!
+        // TO FINISH!!!
 
-    // add span holding description
+        // add span holding description
 
-    var span = document.createElement('span');
-    var todoText = document.createTextNode(todo.description);
-    span.appendChild(todoText);
-    todoNode.appendChild(span);
+        var span = document.createElement('span');
+        var todoText = document.createTextNode(todo.description);
+        span.appendChild(todoText);
+        todoNode.appendChild(span);
 
-    // this adds the delete button
-    var deleteButtonNode = document.createElement('button');
-    var buttonText = document.createTextNode('Delete');
-    deleteButtonNode.appendChild(buttonText);
+        // this adds the delete button
+        var deleteButtonNode = document.createElement('button');
+        var buttonText = document.createTextNode('Delete');
+        deleteButtonNode.appendChild(buttonText);
 
-    deleteButtonNode.addEventListener('click', function(event) {
-      var newState = todoFunctions.deleteTodo(state, todo.id);
-      update(newState);
-    });
-    todoNode.appendChild(deleteButtonNode);
+        deleteButtonNode.addEventListener('click', function(event) {
+            var newState = todoFunctions.deleteTodo(state, todo.id);
+            update(newState);
+        });
+        todoNode.appendChild(deleteButtonNode);
 
-    // add markTodo button
+        // add markTodo button
 
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = todo.done;
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = todo.done;
 
-    checkbox.addEventListener('click', function(event) {
-      event.preventDefault();
-      var newState = todoFunctions.markTodo(state, todo.id);
-      update(newState);
-    });
+        checkbox.addEventListener('click', function(event) {
+            event.preventDefault();
+            var newState = todoFunctions.markTodo(state, todo.id);
+            update(newState);
+        });
 
-    todoNode.appendChild(checkbox);
+        todoNode.appendChild(checkbox);
 
-    // add classes for css
+        // add classes for css
 
-    // TO FINISH!!!
+        // TO FINISH!!!
 
-    return todoNode;
-  };
+        return todoNode;
+    };
 
-  // bind create todo form
-  if (addTodoForm) {
-    addTodoForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      var textinput = event.target[0].value;
-      var newObj = {
-        description: textinput
-      }
-      var newState = todoFunctions.addTodo(state, newObj);
-      update(newState);
-    });
-  }
+    // bind create todo form
+    if (addTodoForm) {
+        addTodoForm.addEventListener('submit', function(event) {
 
-  sortTodos.onchange = function(event) {
-    if (event.target.value === "date"){
-      var newState = todoFunctions.sortTodosID(state);
-    } else if (event.target.value === "completed") {
-      var newState = todoFunctions.sortTodosBool(state);
+            event.preventDefault();
+            var textinput = event.target[0].value;
+            if (textinput === "") {
+                alert("Please add a description for your to do")
+            } else {
+                var newObj = {
+                    description: textinput
+                }
+                var newState = todoFunctions.addTodo(state, newObj);
+                update(newState);
+            }
+        });
     }
-    update(newState);
-  }
 
-  // you should not need to change this function
-  var update = function(newState) {
-    state = newState;
-    renderState(state);
-  };
+    sortTodos.onchange = function(event) {
+        if (event.target.value === "date") {
+            var newState = todoFunctions.sortTodosID(state);
+        } else if (event.target.value === "completed") {
+            var newState = todoFunctions.sortTodosBool(state);
+        }
+        update(newState);
+    }
 
-  // you do not need to change this function
-  var renderState = function(state) {
-    var todoListNode = document.createElement('ul');
+    // you should not need to change this function
+    var update = function(newState) {
+        state = newState;
+        renderState(state);
+    };
 
-    state.forEach(function(todo) {
-      todoListNode.appendChild(createTodoNode(todo));
-    });
+    // you do not need to change this function
+    var renderState = function(state) {
+        var todoListNode = document.createElement('ul');
 
-    // you may want to add a class for css
-    container.replaceChild(todoListNode, container.firstChild);
-  };
+        state.forEach(function(todo) {
+            todoListNode.appendChild(createTodoNode(todo));
+        });
 
-  if (container) renderState(state);
+        // you may want to add a class for css
+        container.replaceChild(todoListNode, container.firstChild);
+    };
+
+    if (container) renderState(state);
 })();
