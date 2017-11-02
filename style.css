@@ -100,3 +100,8 @@ body {
 .todo-listitem-checkbox {
   margin-right: 10px;
 }
+
+.edit {
+  font-style: italic;
+  text-decoration: underline;
+}

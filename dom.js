@@ -52,13 +52,15 @@
     editButtonNode.className = "todo-listitem-editButton";
 
     span.setAttribute("contenteditable", todo.editable);
-    if (span.contentEditable === "true") {
-        editButtonNode.innerText = "Done"
-    }
     editButtonNode.addEventListener('click', function(event) {
+        todo.description = span.innerText;
         var newState = todoFunctions.makeEditableTodo(state, todo.id);
         update(newState);
     });
+    if (span.contentEditable === "true") {
+        editButtonNode.innerText = "Done";
+        span.className = "edit";
+    }
     todoNode.appendChild(editButtonNode);
 
     // this adds the delete button
