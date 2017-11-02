@@ -5,6 +5,7 @@
   // This is the dom node where we will keep our todo
   var container = document.getElementById('todo-container');
   var addTodoForm = document.getElementById('add-todo');
+  var sortTodos = document.getElementById('sort-todo')
 
   var state = [
     { id: -3, description: 'first todo', done: false },
@@ -70,6 +71,15 @@
       var newState = todoFunctions.addTodo(state, newObj);
       update(newState);
     });
+  }
+
+  sortTodos.onchange = function(event) {
+    if (event.target.value === "date"){
+      var newState = todoFunctions.sortTodosID(state);
+    } else if (event.target.value === "completed") {
+      var newState = todoFunctions.sortTodosBool(state);
+    }
+    update(newState);
   }
 
   // you should not need to change this function
