@@ -29,9 +29,8 @@ _
   border: none;
 }
 
-.todo-form-input {
-  padding: 20px;
-  border: none;
+.todo-form-input-button {
+  background: none;
 }
 
 .todo-form-input::-webkit-input-placeholder {
