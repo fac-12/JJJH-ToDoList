@@ -24,7 +24,7 @@
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = todo.done;
-
+    // checkbox.className = "todo-listitem-checkbox";
     checkbox.addEventListener('click', function(event) {
       event.preventDefault();
       var newState = todoFunctions.markTodo(state, todo.id);
@@ -42,8 +42,11 @@
 
     // this adds the delete button
     var deleteButtonNode = document.createElement('button');
-    var buttonText = document.createTextNode('Delete');
-    deleteButtonNode.appendChild(buttonText);
+    var buttonImage = document.createElement('img');
+    buttonImage.src = "images/garbage.svg";
+    buttonImage.className = "todo-listitem-deleteIcon"
+    deleteButtonNode.className = "todo-listitem-deleteButton"
+    deleteButtonNode.appendChild(buttonImage);
 
     deleteButtonNode.addEventListener('click', function(event) {
       var newState = todoFunctions.deleteTodo(state, todo.id);
@@ -54,6 +57,7 @@
     // add markTodo button
 
     // add classes for css
+    todoNode.className = "todo-listitem";
 
     // TO FINISH!!!
 
