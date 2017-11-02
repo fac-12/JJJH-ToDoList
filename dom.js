@@ -9,9 +9,9 @@
   var sortTodos = document.getElementById('sort-todo')
 
   var state = [
-      { id: -3, description: 'first todo', done: false, editable: false },
-      { id: -2, description: 'second todo', done: false, editable: false },
-      { id: -1, description: 'third todo', done: false, editable: false }
+      { id: -3, description: 'Master TDD', done: false, editable: false },
+      { id: -2, description: 'Buy hummus', done: false, editable: false },
+      { id: -1, description: 'Fix No. 14 door', done: false, editable: false }
   ]; // this is our initial todoList
 
   // This function takes a todo, it returns the DOM node representing that todo
@@ -19,8 +19,6 @@
     var todoNode = document.createElement('li');
 
     // you will need to use addEventListener
-
-    // TO FINISH!!!
 
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -64,8 +62,11 @@
     });
     if (span.contentEditable === "true") {
         editButtonNode.innerText = "Done";
+        span.className = "todo-listitem-text edit";
     }
     todoNode.appendChild(editButtonNode);
+
+    if (checkbox.checked) span.className = 'strike todo-listitem-text';
 
     // this adds the delete button
     var deleteButtonNode = document.createElement('button');
