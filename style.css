@@ -1,0 +1,42 @@
+body {
+  font-family: 'Nunito', sans-serif;
+_
+}
+
+.todo-outerContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-innerContainer {
+  /*border: 1px solid black;*/
+}
+
+.heading {
+  font-weight: normal;
+  text-align: center;
+}
+
+.todo-form {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.todo-form-input {
+  padding: 20px;
+  border: none;
+}
+
+.todo-form-input {
+  padding: 20px;
+  border: none;
+}
+
+.todo-form-input::-webkit-input-placeholder {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: #bababa;
+
+}

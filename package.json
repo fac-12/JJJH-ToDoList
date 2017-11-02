@@ -5,7 +5,8 @@
   "main": "dom.js",
   "scripts": {
     "test": "tape ./tests/test.js | tap-spec",
-    "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/tape ./tests/test.js"
+    "coverage": "node_modules/.bin/istanbul cover node_modules/.bin/tape ./tests/test.js",
+    "live": "live-server"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
     "istanbul": "^0.4.5",
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0"
+  },
+  "dependencies": {
+    "live-server": "^1.2.0"
   }
 }

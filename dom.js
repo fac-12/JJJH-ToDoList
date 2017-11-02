@@ -20,6 +20,18 @@
 
     // TO FINISH!!!
 
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = todo.done;
+
+    checkbox.addEventListener('click', function(event) {
+      event.preventDefault();
+      var newState = todoFunctions.markTodo(state, todo.id);
+      update(newState);
+    });
+
+    todoNode.appendChild(checkbox);
+
     // add span holding description
 
     var span = document.createElement('span');
@@ -39,18 +51,6 @@
     todoNode.appendChild(deleteButtonNode);
 
     // add markTodo button
-
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = todo.done;
-
-    checkbox.addEventListener('click', function(event) {
-      event.preventDefault();
-      var newState = todoFunctions.markTodo(state, todo.id);
-      update(newState);
-    });
-
-    todoNode.appendChild(checkbox);
 
     // add classes for css
 
