@@ -7,6 +7,7 @@ test('Addtodo function', function(t) {
     t.notDeepEqual(logic.addTodo(toDoExample, newDo), toDoExample, "newArr should not equal todos")
     t.equals(logic.addTodo(toDoExample, newDo).pop().hasOwnProperty('id'), true, "id has been generated")
     t.equals(logic.addTodo(toDoExample, newDo).pop().hasOwnProperty('done'), true, "done has been generated")
+        t.equals(logic.addTodo(toDoExample, newDo).pop().hasOwnProperty('editable'), true, "editable has been generated")
     t.end();
 });
 
@@ -38,21 +39,32 @@ test('Testing sortTodosID function', function(t) {
     t.end();
 });
 
+test('Testing makeEditableTodo function', function(t) {
+    t.equal(typeof logic.makeEditableTodo(toDoExample, 0), "object", "Should return an object");
+    t.equal(findTodo(logic.makeEditableTodo(toDoExample, 0), 0)[0].editable, false, "Should toggle the done value of idToEdit");
+    t.equal(findTodo(logic.makeEditableTodo(toDoExample, 1), 1)[0].editable, true, "Should toggle the done value of idToEdit");
+    t.end();
+});
+
+
 //GENERAL//
 var toDoExample = [{
         id: 0,
         description: 'smash avocados',
         done: true,
+        editable: true,
     },
     {
         id: 1,
         description: 'make coffee',
         done: false,
+        editable: false,
     },
     {
         id: 2,
         description: 'make tea',
         done: false,
+        editable: false,
     },
 ];
 //FOR ADD TODO//
@@ -64,11 +76,13 @@ var toDoExampleDeleted = [{
         id: 0,
         description: 'smash avocados',
         done: true,
+        editable: true,
     },
     {
         id: 2,
         description: 'make tea',
         done: false,
+        editable: false,
     },
 ];
 //FOR MARK TODO//
@@ -82,15 +96,18 @@ var sortedBoolExample = [{
         id: 1,
         description: 'make coffee',
         done: false,
+        editable: false,
     },
     {
         id: 2,
         description: 'make tea',
         done: false,
+        editable: false,
     },
     {
         id: 0,
         description: 'smash avocados',
         done: true,
+        editable: true,
     },
 ];
