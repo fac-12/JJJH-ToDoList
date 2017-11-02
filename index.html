@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -15,10 +15,10 @@
   <section class="todo-outerContainer">
 
     <div class="todo-innerContainer">
-      <h1 class="todo-heading">Get Things Done!</h1>
+      <h1 class="todo-heading" tabindex="0">Get Things Done!</h1>
       <form class="todo-form" id="add-todo">
-        <input class="todo-form-input todo-form-input-text" placeholder="Add new todo..." type="text" name="description" value="">
-        <input class="todo-form-input todo-form-input-button" type="submit" name="" value="">
+        <input class="todo-form-input todo-form-input-text" aria-label="input textbox" placeholder="Add new todo..." type="text" name="description" value="">
+        <input class="todo-form-input todo-form-input-button" type="submit" role="button" aria-label="Add new to do button" value="" tabindex="0">
       </form>
       <div id="todo-container" class="todo-list">
 

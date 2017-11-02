@@ -26,6 +26,7 @@
     checkbox.type = 'checkbox';
     checkbox.checked = todo.done;
     checkbox.className = "todo-listitem-checkbox";
+    checkbox.setAttribute('aria-label','check box if to do has been completed');
     checkbox.addEventListener('click', function(event) {
       event.preventDefault();
       var newState = todoFunctions.markTodo(state, todo.id);
@@ -39,6 +40,7 @@
     var span = document.createElement('span');
     var todoText = document.createTextNode(todo.description);
     span.className = "todo-listitem-text";
+    span.setAttribute('tabindex',0);
     span.appendChild(todoText);
     todoNode.appendChild(span);
 
@@ -46,8 +48,11 @@
     var editButtonNode = document.createElement('button');
     var editButtonImage = document.createElement('img');
     editButtonImage.src = "images/pencil.svg";
+    editButtonImage.alt = "";
+    editButtonImage.setAttribute('role','presentation');
     editButtonImage.className = "todo-listitem-editIcon";
 
+    editButtonNode.setAttribute('aria-label','edit your to do')
     editButtonNode.appendChild(editButtonImage);
     editButtonNode.className = "todo-listitem-editButton";
 
@@ -59,7 +64,6 @@
     });
     if (span.contentEditable === "true") {
         editButtonNode.innerText = "Done";
-        span.className = "edit";
     }
     todoNode.appendChild(editButtonNode);
 
@@ -67,8 +71,11 @@
     var deleteButtonNode = document.createElement('button');
     var buttonImage = document.createElement('img');
     buttonImage.src = "images/garbage.svg";
-    buttonImage.className = "todo-listitem-deleteIcon"
-    deleteButtonNode.className = "todo-listitem-deleteButton"
+    buttonImage.className = "todo-listitem-deleteIcon";
+    buttonImage.alt = "";
+    buttonImage.setAttribute('role','presentation');
+    deleteButtonNode.className = "todo-listitem-deleteButton";
+    deleteButtonNode.setAttribute('aria-label','delete to do');
     deleteButtonNode.appendChild(buttonImage);
 
     deleteButtonNode.addEventListener('click', function(event) {
