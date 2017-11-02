@@ -20,18 +20,22 @@
 
     // you will need to use addEventListener
 
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = todo.done;
-    checkbox.className = "todo-listitem-checkbox";
-    checkbox.setAttribute('aria-label','check box if to do has been completed');
-    checkbox.addEventListener('click', function(event) {
-      event.preventDefault();
+    var checkboxContainer = document.createElement('div');
+    checkboxContainer.className = "todo-listitem-checkboxContainer";
+    var tick = document.createTextNode('✓');
+    checkboxContainer.appendChild(tick);
+
+    checkboxContainer.addEventListener('click', function(event) {
       var newState = todoFunctions.markTodo(state, todo.id);
       update(newState);
-    });
+    })
 
-    todoNode.appendChild(checkbox);
+    if(todo.done) {
+      checkboxContainer.className = 'todo-listitem-checkboxContainer checked';
+    }
+    else checkboxContainer.className = 'todo-listitem-checkboxContainer';
+
+    todoNode.appendChild(checkboxContainer);
 
     // add span holding description
 
@@ -66,7 +70,7 @@
     }
     todoNode.appendChild(editButtonNode);
 
-    if (checkbox.checked) span.className = 'strike todo-listitem-text';
+    if (todo.done) span.className = 'strike todo-listitem-text';
 
     // this adds the delete button
     var deleteButtonNode = document.createElement('button');
