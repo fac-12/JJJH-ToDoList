@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+_
+}
+
+.todo-outerContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-innerContainer {
+  margin-bottom: 50px;
+}
+
+.heading {
+  font-weight: normal;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.todo-form {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.todo-form-input {
+  padding: 20px;
+  border: none;
+}
+
+.todo-form-input-button {
+
+  background: url('images/add.svg');
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.todo-form-input::-webkit-input-placeholder {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: #bababa;
+
+}
+
+.todo-listitem {
+  list-style-type: none;
+  padding: 20px;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.todo-listitem-deleteIcon {
+  width: 18px;
+
+}
+
+.todo-listitem-deleteIcon:hover {
+  opacity: 0.5;
+}
+
+.todo-listitem-deleteButton {
+  background: none;
+  border: none;
+}
+
+.todo-listitem-checkbox {
+  width: 40px;
+	height: 40px;
+	background: #ddd;
+	margin: 20px 90px;
+
+	border-radius: 100%;
+	position: relative;
+	box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
+}
