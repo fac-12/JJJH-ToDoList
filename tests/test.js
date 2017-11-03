@@ -46,7 +46,6 @@ test('Testing makeEditableTodo function', function(t) {
     t.end();
 });
 
-
 //GENERAL//
 var toDoExample = [{
         id: 0,

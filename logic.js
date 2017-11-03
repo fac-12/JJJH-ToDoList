@@ -1,10 +1,4 @@
-// Part 1. Fill in any missing parts of the todoFunction object!
-// you can access these on todo.todoFunctions
-// For part one we expect you to use tdd
-
 var todoFunctions = {
-    // todoFunctions.generateId() will give you a unique id
-    // You do not need to understand the implementation of this function.
     generateId: (function() {
         var idCounter = 0;
 
@@ -15,8 +9,6 @@ var todoFunctions = {
         return incrementCounter;
     })(),
 
-    //cloneArrayOfObjects will create a copy of the todos array
-    //changes to the new array don't affect the original
     cloneArrayOfObjects: function(todos) {
         return todos.map(function(todo) {
             return JSON.parse(JSON.stringify(todo));
@@ -67,8 +59,7 @@ var todoFunctions = {
         return newArr
     },
 };
-// See this article for more details:
-// http://www.matteoagosti.com/blog/2013/02/24/writing-javascript-modules-for-both-browser-and-node/
+
 if (typeof module !== 'undefined') {
     module.exports = todoFunctions;
 }

@@ -1,24 +1,13 @@
-// part 2 linking it all together
-// The function here is called an iife,
-// it keeps everything inside hidden from the rest of our application
 (function() {
 
-  // This is the dom node where we will keep our todo
   var container = document.getElementById('todo-container');
   var addTodoForm = document.getElementById('add-todo');
   var sortTodos = document.getElementById('sort-todo')
 
-  var state = [
-      // { id: 0, description: 'Master TDD', done: false, editable: false },
-      // { id: 1, description: 'Buy hummus', done: false, editable: false },
-      // { id: 2, description: 'Fix No. 14 door', done: false, editable: false }
-  ]; // this is our initial todoList
+  var state = [];
 
-  // This function takes a todo, it returns the DOM node representing that todo
   var createTodoNode = function(todo) {
     var todoNode = document.createElement('li');
-
-    // you will need to use addEventListener
 
     var checkboxContainer = document.createElement('div');
     checkboxContainer.className = "todo-listitem-checkboxContainer";
@@ -40,8 +29,6 @@
 
     todoNode.appendChild(checkboxContainer);
 
-    // add descriptionInput holding description
-
     var descriptionInput = document.createElement('input');
     descriptionInput.value = todo.description;
     descriptionInput.className = "todo-listitem-text";
@@ -52,11 +39,8 @@
     }
     else descriptionInput.setAttribute('disabled','')
 
-
-
     todoNode.appendChild(descriptionInput);
 
-    // this adds the edit button
     var editButtonNode = document.createElement('button');
     var editButtonImage = document.createElement('img');
     editButtonImage.src = "images/pencil.svg";
@@ -67,7 +51,6 @@
     editButtonNode.setAttribute('aria-label','edit your to do')
     editButtonNode.appendChild(editButtonImage);
     editButtonNode.className = "todo-listitem-editButton";
-
 
     editButtonNode.addEventListener('click', function(event) {
         todo.description = descriptionInput.value;
@@ -85,7 +68,6 @@
 
     if (todo.done) descriptionInput.classList.add('strike');
 
-    // this adds the delete button
     var deleteButtonNode = document.createElement('button');
     var buttonImage = document.createElement('img');
     buttonImage.src = "images/garbage.svg";
@@ -102,31 +84,21 @@
     });
     todoNode.appendChild(deleteButtonNode);
 
-    // add markTodo button
-
-    // add classes for css
     todoNode.className = "todo-listitem";
-
-    // TO FINISH!!!
 
     return todoNode;
   };
 
-  // bind create todo form
   if (addTodoForm) {
       addTodoForm.addEventListener('submit', function(event) {
-
-          event.preventDefault();
+          event.preventDefault()
           var textinput = event.target[0].value;
-          if (textinput === "") {
-              alert("Please add a description for your to do")
-          } else {
-              var newObj = {
-                  description: textinput
-              }
-              var newState = todoFunctions.addTodo(state, newObj);
-              update(newState);
+          var newObj = {
+                description: textinput
           }
+          event.target[0].value = "";
+          var newState = todoFunctions.addTodo(state, newObj);
+          update(newState);
       });
   }
 
@@ -139,13 +111,11 @@
       update(newState);
   }
 
-  // you should not need to change this function
   var update = function(newState) {
       state = newState;
       renderState(state);
   };
 
-  // you do not need to change this function
   var renderState = function(state) {
       var todoListNode = document.createElement('ul');
 
@@ -153,7 +123,6 @@
           todoListNode.appendChild(createTodoNode(todo));
       });
 
-      // you may want to add a class for css
       container.replaceChild(todoListNode, container.firstChild);
       console.log('State re-rendered');
   };
