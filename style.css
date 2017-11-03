@@ -90,7 +90,6 @@ body {
 .todo-listitem-text {
   margin-right: auto;
   width: 50%;
-  overflow-wrap: break-word;
   padding: 10px 10px;
   border: none;
 }

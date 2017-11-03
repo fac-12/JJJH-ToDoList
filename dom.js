@@ -9,9 +9,9 @@
   var sortTodos = document.getElementById('sort-todo')
 
   var state = [
-      // { id: 0, description: 'Master TDD', done: false, editable: false },
-      // { id: 1, description: 'Buy hummus', done: false, editable: false },
-      // { id: 2, description: 'Fix No. 14 door', done: false, editable: false }
+      { id: 0, description: 'Master TDD', done: false, editable: false },
+      { id: 1, description: 'Buy hummus', done: false, editable: false },
+      { id: 2, description: 'Fix No. 14 door', done: false, editable: false }
   ]; // this is our initial todoList
 
   // This function takes a todo, it returns the DOM node representing that todo
