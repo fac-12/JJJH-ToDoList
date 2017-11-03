@@ -130,9 +130,6 @@
       });
   }
 
-
-
-
   sortTodos.onchange = function(event) {
       if (event.target.value === "date") {
           var newState = todoFunctions.sortTodosID(state);

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>tdd todo</title>
   <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400" rel="stylesheet">
@@ -17,7 +18,7 @@
     <div class="todo-innerContainer">
       <h1 class="todo-heading" tabindex="0">Get Things Done!</h1>
       <form class="todo-form" id="add-todo">
-        <input class="todo-form-input todo-form-input-text" aria-label="input textbox" placeholder="Add new todo..." type="text" name="description" value="">
+        <input class="todo-form-input todo-form-input-text" aria-label="input textbox" placeholder="Add new todo..." type="text" name="description" value="" required aria-required="true">
         <input class="todo-form-input todo-form-input-button" type="submit" role="button" aria-label="Add new to do button" value="" tabindex="0">
       </form>
       <div id="todo-container" class="todo-list">
