@@ -116,14 +116,16 @@
   if (addTodoForm) {
       addTodoForm.addEventListener('submit', function(event) {
 
-          event.preventDefault();
+          event.preventDefault()
+          console.log(event.target);
           var textinput = event.target[0].value;
           if (textinput === "") {
               alert("Please add a description for your to do")
           } else {
               var newObj = {
-                  description: textinput
+                description: textinput
               }
+              event.target[0].value = "";
               var newState = todoFunctions.addTodo(state, newObj);
               update(newState);
           }
